@@ -1,0 +1,14 @@
+# KOL Blacklist
+# Add creators/channels/profiles to SKIP for your projects.
+# Examples:
+# - Creators already contacted
+# - Competitor-affiliated creators
+# - Creators outside the target region/language
+# - Creators with poor brand safety
+# - Creators that are too expensive for the project
+# - Creators the user explicitly rejected
+
+# Add URLs, handles, emails, or notes here, one per line:
+# https://www.youtube.com/@ChannelName
+# https://www.instagram.com/username/
+# creator@example.com
