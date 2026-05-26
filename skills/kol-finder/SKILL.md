@@ -216,6 +216,56 @@ Important:
 - Save raw exports in `reference/opencli_raw/`.
 - Do not use follower counts or engagement numbers blindly. Validate recent relevant content.
 
+### OpenCLI Known Issues and Workarounds
+
+#### Issue: YouTube Channel API Returns HTTP 400
+When using `opencli youtube channel <id>` to get channel info including subscriber counts, it may return HTTP 400 error.
+
+**Workaround:** Use `opencli youtube video <url>` instead. The video endpoint returns channel info including subscriber count in the `subscribers` field.
+
+```powershell
+# Instead of (may fail):
+opencli youtube channel "CHANNEL_ID" --format json
+
+# Use (more reliable):
+opencli youtube video "https://www.youtube.com/watch?v=VIDEO_ID" --format json
+```
+
+#### Issue: Python subprocess cannot find opencli command
+When calling opencli from Python subprocess, it may fail with "file not found" error even though opencli works in terminal.
+
+**Workaround:** 
+1. Use the full path to opencli executable
+2. Or run opencli commands directly in terminal and save output to files, then parse the files in Python
+3. Or use shell=True in subprocess and ensure proper PATH
+
+#### Issue: Subscriber count format varies
+The subscriber count format can be in different languages:
+- Chinese: "19.9万位订阅者"
+- English: "199K subscribers"
+
+**Solution:** Parse and normalize the subscriber count before using in reports.
+
+#### Issue: Instagram search requires JavaScript adapter
+Instagram commands may show "requires JavaScript adapter" warning for some old YAML adapters, but the main commands (search, profile, user) are already converted to JavaScript and work properly.
+
+**Status:** ✅ Working
+**Commands available:**
+- `opencli instagram search <query>` - Search Instagram users
+- `opencli instagram profile <username>` - Get profile info with follower count
+- `opencli instagram user <username>` - Get recent posts
+
+**Example:**
+```powershell
+# Search for guitar-related accounts
+opencli instagram search "guitar amp" --format csv
+
+# Get profile info including followers
+opencli instagram profile "guitar_amp_" --format csv
+```
+
+**Note:** Instagram commands require login (cookies).
+
 ## Market Audit
 
 Build a compact audit before large-scale search.
@@ -375,16 +425,9 @@ Required columns:
 | 国家地区 | Country/region/language |
 | 推荐理由 | Short evidence-based reason for recommendation |
 
-## Outreach Preparation
+## Outreach Recommendation
 
-For approved KOLs, prepare personalization notes:
-
-- Mention one specific recent relevant piece of content.
-- Explain why the product fits their audience.
-- Suggest one content concept that matches their style.
-- Keep the first message short and low friction.
-
-Use `templates/email_template.md` if available, but adapt the pitch to the product category.
+For personalized outreach to approved KOLs, use the **kol-outreach** skill which provides dedicated templates and guidance for email, DM, and LinkedIn messaging.
 
 ## Error Handling
 
