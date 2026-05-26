@@ -96,9 +96,9 @@ projects/
     |   +-- opencli_raw/
     +-- results/
         +-- Raw/
-        |   +-- kol_candidates_raw.csv
+        |   +-- kol_candidates_raw.xlsx
         +-- Approved/
-            +-- kol_candidates_final.csv
+            +-- kol_candidates_final.xlsx
 ```
 
 Create the project after the product/KOL persona is clear enough. If a project already exists, load it instead of recreating it.
@@ -124,7 +124,7 @@ If project exists, read:
 - `projects/[Product]/assets/product_pitch.md`
 - `projects/[Product]/reference/kol_persona.md`
 - `projects/[Product]/reference/search_strategy_log.md`
-- existing CSVs under `results/Raw/` and `results/Approved/`
+- existing XLSXs under `results/Raw/` and `results/Approved/`
 
 If project is new, create folders and files:
 
@@ -338,7 +338,7 @@ Score each candidate from 1 to 5.
 
 ## Deduplication
 
-Before output, read all existing CSVs in:
+Before output, read all existing XLSXs in:
 
 - `projects/[Product]/results/Raw/`
 - `projects/[Product]/results/Approved/`
@@ -357,30 +357,23 @@ If one creator appears on multiple platforms, keep one row and list secondary pl
 Save to:
 
 ```text
-projects/[Product]/results/Raw/kol_candidates_[Product]_[Date].csv
+projects/[Product]/results/Raw/kol_candidates_[Product]_[Date].xlsx
 ```
 
 Required columns:
 
 | Column | Description |
 |---|---|
-| Platform | YouTube, Instagram, TikTok, LinkedIn, X/Twitter, blog, podcast, etc. |
-| Creator Name | KOL/channel/profile name |
-| URL | Main profile URL |
-| Secondary URLs | Other platforms if available |
-| Followers/Subscribers | Public count |
-| Avg Views/Engagement | Estimate from recent relevant content |
-| Recent Activity | Last upload/post date |
-| Niche | Product-relevant creator niche |
-| Audience Fit | Who they appear to reach |
-| Comparable Products/Topics | Similar brands, products, or problems covered |
-| Content Format Fit | Review, demo, tutorial, UGC, expert post, etc. |
-| Relevance Score | 1-5 |
-| Why Fit | Short evidence-based reason |
-| Risk/Concern | Any caveat |
-| Contact Route | Email, website, agency, DM, form |
-| Recent Relevant Content | URL |
-| Source Notes | Search query, OpenCLI file, or source used |
+| 合作产品 | Product name for collaboration |
+| 频道名称 | KOL/channel/profile name |
+| 联系人 | Contact person if available |
+| YouTube链接 | YouTube channel/profile URL |
+| YouTube 粉丝量 | YouTube subscriber count |
+| Instagram链接 | Instagram profile URL |
+| Instagram 粉丝量 | Instagram follower count |
+| Email | Contact email |
+| 国家地区 | Country/region/language |
+| 推荐理由 | Short evidence-based reason for recommendation |
 
 ## Outreach Preparation
 
