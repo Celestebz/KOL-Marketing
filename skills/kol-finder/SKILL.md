@@ -216,6 +216,27 @@ Important:
 - Save raw exports in `reference/opencli_raw/`.
 - Do not use follower counts or engagement numbers blindly. Validate recent relevant content.
 
+### Login Requirements
+
+**Many OpenCLI adapters require authentication to access platform data.** Before using, ensure you are logged in to the required platforms.
+
+| Platform | Login Required | Notes |
+|----------|----------------|-------|
+| YouTube | ✅ Yes | Required for search, video details, comments |
+| Instagram | ✅ Yes | Required for all commands |
+| TikTok | ✅ Yes | Required for all commands |
+| Twitter/X | ✅ Yes | Required for most commands |
+| LinkedIn | ✅ Yes | Required for most commands |
+| Reddit | ⚠️ Partial | Some endpoints require login |
+| Google | ❌ No | Public search doesn't require login |
+
+**How to login:**
+1. Run `opencli doctor` to check login status
+2. Follow prompts to authenticate with required platforms
+3. Login status is stored in cookies and persists between sessions
+
+**Official documentation:** https://github.com/jackwener/opencli/blob/main/docs/adapters/index.md
+
 ### OpenCLI Known Issues and Workarounds
 
 #### Issue: YouTube Channel API Returns HTTP 400
@@ -247,21 +268,21 @@ The subscriber count format can be in different languages:
 **Solution:** Parse and normalize the subscriber count before using in reports.
 
 #### Issue: Instagram search requires JavaScript adapter
-Instagram commands may show "requires JavaScript adapter" warning for some old YAML adapters, but the main commands (search, profile, user) are already converted to JavaScript and work properly.
+**Status:** ✅ Working - Instagram adapters are already converted to JavaScript
 
-**Status:** ✅ Working
-**Commands available:**
-- `opencli instagram search <query>` - Search Instagram users
-- `opencli instagram profile <username>` - Get profile info with follower count
-- `opencli instagram user <username>` - Get recent posts
+The warning messages about "YAML format is no longer supported" refer to **other platforms** (TikTok, Reddit, Zhihu, Xiaohongshu, etc.), **not Instagram**.
 
-**Example:**
+Instagram's main commands (`search`, `profile`, `user`) are already implemented in JavaScript and work properly:
+
 ```powershell
-# Search for guitar-related accounts
-opencli instagram search "guitar amp" --format csv
+# Search for Instagram users
+opencli instagram search "guitar player" --format csv
 
 # Get profile info including followers
-opencli instagram profile "guitar_amp_" --format csv
+opencli instagram profile "username" --format csv
+
+# Get recent posts from a user
+opencli instagram user "username" --format csv
 ```
 
 **Note:** Instagram commands require login (cookies).
